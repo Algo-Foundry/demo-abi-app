@@ -10,7 +10,7 @@ The following ABI compliant application demo is built using Beaker, compiled wit
 1. Setup AlgoKit (see below). Recommended to install [AlgoKit](https://github.com/algorandfoundation/algokit-cli) globally first
 2. Run `yarn install` to install the javascript libraries.
 3. Run `python -m smart_contracts` to compile the smart contracts. This creates the artifacts folder. Take note of the app ID of the deployed app in the print out.
-4. Copy the `contract.json` in the `artifacts/helloworld.HelloWorld` folder to the actions folder.
+4. Copy the `contract.json` in the `smart_contracts/artifacts/helloworld.HelloWorld` folder to the actions folder.
 5. Copy `.env.example` to `.env`. Update the `APP_ID`, `ADDR_CREATOR` and `MNEMONIC_CREATOR` values in the `.env` file.
 6. Run the scripts.
 ```
