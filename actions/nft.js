@@ -6,7 +6,6 @@ const {
   makeATCCall,
 } = require("./helper");
 require("dotenv").config();
-const fs = require("fs");
 
 const algodClient = new algosdk.Algodv2(
   process.env.ALGOD_TOKEN,
