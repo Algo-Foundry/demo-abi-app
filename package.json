@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "algosdk": "^2.1.0",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "tweetnacl": "^1.0.3"
   }
 }

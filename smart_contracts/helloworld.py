@@ -1,10 +1,10 @@
 from beaker.application import Application
 from beaker.decorators import external, create, opt_in, close_out, delete, Authorize
 from beaker.state import ApplicationStateValue, AccountStateValue
-from pyteal import Bytes, Approve, Global, Int, Seq, InnerTxnBuilder, TxnField, TxnType, InnerTxn, AssetHolding, Txn
+from pyteal import Bytes, Approve, Global, Int, Seq, InnerTxnBuilder, TxnField, TxnType, InnerTxn, AssetHolding, Txn, Ed25519Verify_Bare
 from pyteal.ast import abi
 from pyteal.types import TealType
-from typing import Final
+from typing import Final, Literal
 
 
 class HelloWorld(Application):
@@ -108,4 +108,12 @@ class HelloWorld(Application):
             output.set("Transferred!")
         )
 
+    @external
+    def ed25519verify_bare(
+        self, msg: abi.String, pubkey: abi.StaticBytes[Literal[32]], sig: abi.StaticBytes[Literal[64]], *, output: abi.Bool
+    ):
+        return output.set(Ed25519Verify_Bare(msg.get(), sig.get(), pubkey.get()))
     
+    @external
+    def noop(self):
+        return Approve()
