@@ -1,0 +1,65 @@
+{
+    "name": "DemoApp",
+    "methods": [
+        {
+            "name": "update_global",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "gt"
+                },
+                {
+                    "type": "uint64",
+                    "name": "gi"
+                }
+            ],
+            "returns": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "update_local",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "lt"
+                },
+                {
+                    "type": "uint64",
+                    "name": "li"
+                }
+            ],
+            "returns": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "create_nft",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "assetName"
+                },
+                {
+                    "type": "string",
+                    "name": "assetURL"
+                },
+                {
+                    "type": "string",
+                    "name": "metadataHash"
+                }
+            ],
+            "returns": {
+                "type": "uint64"
+            }
+        },
+        {
+            "name": "transfer_nft",
+            "args": [],
+            "returns": {
+                "type": "string"
+            }
+        }
+    ],
+    "networks": {}
+}

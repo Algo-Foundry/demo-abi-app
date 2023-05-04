@@ -1,0 +1,11 @@
+{
+  "name": "demo-abi-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Charlie Kong <charlie@algofoundry.studio>",
+  "license": "MIT",
+  "dependencies": {
+    "algosdk": "^2.2.0",
+    "dotenv": "^16.0.3"
+  }
+}
