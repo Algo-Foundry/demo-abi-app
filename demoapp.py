@@ -125,5 +125,23 @@ def transfer_nft(*, output: abi.String):
     )
 
 
+@app.external
+def atomic_check(
+    text1: abi.String,
+    pay1: abi.Transaction,
+    pay2: abi.Transaction,
+    num1: abi.Uint64,
+    *,
+    output: abi.String
+):
+    return Seq(
+        Assert(text1.get() == Bytes("text1")),
+        Assert(num1.get() == Int(100)),
+        Assert(pay1.get().type_enum() == TxnType.Payment),
+        Assert(pay2.get().type_enum() == TxnType.Payment),
+        output.set("Pass!"),
+    )
+
+
 if __name__ == "__main__":
     app.build().export("./artifacts")

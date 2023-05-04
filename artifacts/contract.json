@@ -59,6 +59,30 @@
             "returns": {
                 "type": "string"
             }
+        },
+        {
+            "name": "atomic_check",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "text1"
+                },
+                {
+                    "type": "txn",
+                    "name": "pay1"
+                },
+                {
+                    "type": "txn",
+                    "name": "pay2"
+                },
+                {
+                    "type": "uint64",
+                    "name": "num1"
+                }
+            ],
+            "returns": {
+                "type": "string"
+            }
         }
     ],
     "networks": {}

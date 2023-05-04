@@ -222,7 +222,11 @@ const makeATCCall = async (txns) => {
 
   // add calls to atc
   txns.forEach((txn) => {
-    atc.addMethodCall(txn);
+    if (txn.method !== undefined) {
+      atc.addMethodCall(txn);
+    } else {
+      atc.addTransaction(txn);
+    }
   });
 
   // execute

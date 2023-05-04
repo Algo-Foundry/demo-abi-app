@@ -4,6 +4,7 @@ The following ABI compliant application demo is built using Beaker, compiled wit
 
 1. Updating local / global state values
 2. Create and send NFT
+3. Transaction types in ABI methods 
 
 ## Setup instructions
 
@@ -33,3 +34,6 @@ run `node scripts/actions/nft.js`
 
 ### State Management
 run `node scripts/actions/state_mgmt.js`
+
+### Transaction Types in ABI Methods
+run `node scripts/actions/atomic.js`

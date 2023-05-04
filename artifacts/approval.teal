@@ -1,28 +1,66 @@
 #pragma version 8
-intcblock 0 1
+intcblock 0 1 2
 bytecblock 0x151f7c75 0x 0x476c6f62616c496e7465676572 0x476c6f62616c54657874 0x4c6f63616c496e7465676572 0x4c6f63616c54657874
 txn NumAppArgs
 intc_0 // 0
 ==
-bnz main_l10
+bnz main_l12
 txna ApplicationArgs 0
 pushbytes 0x1df4c91a // "update_global(string,uint64)string"
 ==
-bnz main_l9
+bnz main_l11
 txna ApplicationArgs 0
 pushbytes 0x0cf97bea // "update_local(string,uint64)string"
 ==
-bnz main_l8
+bnz main_l10
 txna ApplicationArgs 0
 pushbytes 0xbdb63336 // "create_nft(string,string,string)uint64"
 ==
-bnz main_l7
+bnz main_l9
 txna ApplicationArgs 0
 pushbytes 0x6394b7f4 // "transfer_nft()string"
 ==
-bnz main_l6
+bnz main_l8
+txna ApplicationArgs 0
+pushbytes 0xac4baf38 // "atomic_check(string,txn,txn,uint64)string"
+==
+bnz main_l7
 err
-main_l6:
+main_l7:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+txna ApplicationArgs 1
+store 11
+txna ApplicationArgs 2
+btoi
+store 14
+txn GroupIndex
+intc_2 // 2
+-
+store 12
+txn GroupIndex
+intc_1 // 1
+-
+store 13
+load 11
+load 12
+load 13
+load 14
+callsub atomiccheck_8
+store 15
+bytec_0 // 0x151f7c75
+load 15
+concat
+log
+intc_1 // 1
+return
+main_l8:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -39,7 +77,7 @@ concat
 log
 intc_1 // 1
 return
-main_l7:
+main_l9:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -66,7 +104,7 @@ concat
 log
 intc_1 // 1
 return
-main_l8:
+main_l10:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -90,7 +128,7 @@ concat
 log
 intc_1 // 1
 return
-main_l9:
+main_l11:
 txn OnCompletion
 intc_0 // NoOp
 ==
@@ -114,25 +152,25 @@ concat
 log
 intc_1 // 1
 return
-main_l10:
+main_l12:
 txn OnCompletion
 intc_0 // NoOp
 ==
-bnz main_l18
+bnz main_l20
 txn OnCompletion
 intc_1 // OptIn
 ==
-bnz main_l17
+bnz main_l19
 txn OnCompletion
-pushint 2 // CloseOut
+intc_2 // CloseOut
 ==
-bnz main_l16
+bnz main_l18
 txn OnCompletion
 pushint 5 // DeleteApplication
 ==
-bnz main_l15
+bnz main_l17
 err
-main_l15:
+main_l17:
 txn ApplicationID
 intc_0 // 0
 !=
@@ -140,7 +178,7 @@ assert
 callsub delete_3
 intc_1 // 1
 return
-main_l16:
+main_l18:
 txn ApplicationID
 intc_0 // 0
 !=
@@ -148,7 +186,7 @@ assert
 callsub closeout_2
 intc_1 // 1
 return
-main_l17:
+main_l19:
 txn ApplicationID
 intc_0 // 0
 !=
@@ -156,7 +194,7 @@ assert
 callsub optin_1
 intc_1 // 1
 return
-main_l18:
+main_l20:
 txn ApplicationID
 intc_0 // 0
 ==
@@ -282,5 +320,32 @@ intc_1 // 1
 itxn_field AssetAmount
 itxn_submit
 pushbytes 0x000c5472616e7366657272656421 // 0x000c5472616e7366657272656421
+frame_bury 0
+retsub
+
+// atomic_check
+atomiccheck_8:
+proto 4 1
+bytec_1 // ""
+frame_dig -4
+extract 2 0
+pushbytes 0x7465787431 // "text1"
+==
+assert
+frame_dig -1
+pushint 100 // 100
+==
+assert
+frame_dig -3
+gtxns TypeEnum
+intc_1 // pay
+==
+assert
+frame_dig -2
+gtxns TypeEnum
+intc_1 // pay
+==
+assert
+pushbytes 0x00055061737321 // 0x00055061737321
 frame_bury 0
 retsub
