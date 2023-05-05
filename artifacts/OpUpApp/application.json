@@ -1,0 +1,74 @@
+{
+    "hints": {
+        "ed25519verify_bare(string,byte[32],byte[64])bool": {
+            "call_config": {
+                "no_op": "CALL"
+            }
+        },
+        "noop()void": {
+            "call_config": {
+                "no_op": "CALL"
+            }
+        }
+    },
+    "source": {
+        "approval": "I3ByYWdtYSB2ZXJzaW9uIDgKaW50Y2Jsb2NrIDAgMQp0eG4gTnVtQXBwQXJncwppbnRjXzAgLy8gMAo9PQpibnogbWFpbl9sNgp0eG5hIEFwcGxpY2F0aW9uQXJncyAwCnB1c2hieXRlcyAweDJmZGI1OTVlIC8vICJlZDI1NTE5dmVyaWZ5X2JhcmUoc3RyaW5nLGJ5dGVbMzJdLGJ5dGVbNjRdKWJvb2wiCj09CmJueiBtYWluX2w1CnR4bmEgQXBwbGljYXRpb25BcmdzIDAKcHVzaGJ5dGVzIDB4ZTgzYTg3YWIgLy8gIm5vb3AoKXZvaWQiCj09CmJueiBtYWluX2w0CmVycgptYWluX2w0Ogp0eG4gT25Db21wbGV0aW9uCmludGNfMCAvLyBOb09wCj09CnR4biBBcHBsaWNhdGlvbklECmludGNfMCAvLyAwCiE9CiYmCmFzc2VydApjYWxsc3ViIG5vb3BfMQppbnRjXzEgLy8gMQpyZXR1cm4KbWFpbl9sNToKdHhuIE9uQ29tcGxldGlvbgppbnRjXzAgLy8gTm9PcAo9PQp0eG4gQXBwbGljYXRpb25JRAppbnRjXzAgLy8gMAohPQomJgphc3NlcnQKdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQpzdG9yZSAwCnR4bmEgQXBwbGljYXRpb25BcmdzIDIKc3RvcmUgMQp0eG5hIEFwcGxpY2F0aW9uQXJncyAzCnN0b3JlIDIKbG9hZCAwCmxvYWQgMQpsb2FkIDIKY2FsbHN1YiBlZDI1NTE5dmVyaWZ5YmFyZV8wCnN0b3JlIDMKcHVzaGJ5dGVzIDB4MTUxZjdjNzUgLy8gMHgxNTFmN2M3NQpwdXNoYnl0ZXMgMHgwMCAvLyAweDAwCmludGNfMCAvLyAwCmxvYWQgMwpzZXRiaXQKY29uY2F0CmxvZwppbnRjXzEgLy8gMQpyZXR1cm4KbWFpbl9sNjoKdHhuIE9uQ29tcGxldGlvbgppbnRjXzAgLy8gTm9PcAo9PQpibnogbWFpbl9sOAplcnIKbWFpbl9sODoKdHhuIEFwcGxpY2F0aW9uSUQKaW50Y18wIC8vIDAKPT0KYXNzZXJ0CmludGNfMSAvLyAxCnJldHVybgoKLy8gZWQyNTUxOXZlcmlmeV9iYXJlCmVkMjU1MTl2ZXJpZnliYXJlXzA6CnByb3RvIDMgMQppbnRjXzAgLy8gMApmcmFtZV9kaWcgLTMKZXh0cmFjdCAyIDAKZnJhbWVfZGlnIC0xCmZyYW1lX2RpZyAtMgplZDI1NTE5dmVyaWZ5X2JhcmUKIQohCmZyYW1lX2J1cnkgMApyZXRzdWIKCi8vIG5vb3AKbm9vcF8xOgpwcm90byAwIDAKaW50Y18xIC8vIDEKcmV0dXJu",
+        "clear": "I3ByYWdtYSB2ZXJzaW9uIDgKcHVzaGludCAwIC8vIDAKcmV0dXJu"
+    },
+    "state": {
+        "global": {
+            "num_byte_slices": 0,
+            "num_uints": 0
+        },
+        "local": {
+            "num_byte_slices": 0,
+            "num_uints": 0
+        }
+    },
+    "schema": {
+        "global": {
+            "declared": {},
+            "reserved": {}
+        },
+        "local": {
+            "declared": {},
+            "reserved": {}
+        }
+    },
+    "contract": {
+        "name": "OpUpApp",
+        "methods": [
+            {
+                "name": "ed25519verify_bare",
+                "args": [
+                    {
+                        "type": "string",
+                        "name": "msg"
+                    },
+                    {
+                        "type": "byte[32]",
+                        "name": "pubkey"
+                    },
+                    {
+                        "type": "byte[64]",
+                        "name": "sig"
+                    }
+                ],
+                "returns": {
+                    "type": "bool"
+                }
+            },
+            {
+                "name": "noop",
+                "args": [],
+                "returns": {
+                    "type": "void"
+                }
+            }
+        ],
+        "networks": {}
+    },
+    "bare_call_config": {
+        "no_op": "CREATE"
+    }
+}

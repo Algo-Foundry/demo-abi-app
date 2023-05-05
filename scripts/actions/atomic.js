@@ -11,6 +11,7 @@ const algodClient = new algosdk.Algodv2(
 (async () => {
   const creator = algosdk.mnemonicToSecretKey(process.env.CREATOR_MNEMONIC);
   const acc1 = algosdk.mnemonicToSecretKey(process.env.ACC1_MNEMONIC);
+  const appName = "DemoApp";
 
   // get app ID
   const appID = Number(process.env.APP_ID);
@@ -45,7 +46,7 @@ const algodClient = new algosdk.Algodv2(
 
   const txns = [
     {
-      method: getMethodByName("atomic_check"),
+      method: getMethodByName("atomic_check", appName),
       methodArgs: [
         "text1",
         { txn: txn1, signer: txnsigner },

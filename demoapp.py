@@ -39,7 +39,8 @@ class DemoAppState:
     )
 
 
-app = Application("DemoApp", state=DemoAppState())
+APP_NAME = "DemoApp"
+app = Application(APP_NAME, state=DemoAppState())
 
 
 @app.create(bare=True)
@@ -86,7 +87,7 @@ def create_nft(
     assetURL: abi.String,
     metadataHash: abi.String,
     *,
-    output: abi.Uint64
+    output: abi.Uint64,
 ):
     return Seq(
         InnerTxnBuilder.Begin(),
@@ -132,7 +133,7 @@ def atomic_check(
     pay2: abi.Transaction,
     num1: abi.Uint64,
     *,
-    output: abi.String
+    output: abi.String,
 ):
     return Seq(
         Assert(text1.get() == Bytes("text1")),
@@ -144,4 +145,4 @@ def atomic_check(
 
 
 if __name__ == "__main__":
-    app.build().export("./artifacts")
+    app.build().export(f"./artifacts/{APP_NAME}")

@@ -16,6 +16,7 @@ const algodClient = new algosdk.Algodv2(
 
 (async () => {
   const creator = algosdk.mnemonicToSecretKey(process.env.CREATOR_MNEMONIC);
+  const appName = "DemoApp";
 
   // get app ID
   const appID = Number(process.env.APP_ID);
@@ -36,7 +37,7 @@ const algodClient = new algosdk.Algodv2(
   // update global and local state
   const txn1 = [
     {
-      method: getMethodByName("update_global"),
+      method: getMethodByName("update_global", appName),
       methodArgs: ["hi", 555],
       ...commonParams,
     },
@@ -47,7 +48,7 @@ const algodClient = new algosdk.Algodv2(
   // update global and local state
   const txn2 = [
     {
-      method: getMethodByName("update_local"),
+      method: getMethodByName("update_local", appName),
       methodArgs: ["bye", 123],
       ...commonParams,
     },

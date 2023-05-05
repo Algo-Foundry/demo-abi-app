@@ -104,15 +104,49 @@ const deployDemoApp = async (fromAccount) => {
 
   // programs
   const approvalProgram = await getBasicProgramBytes(
-    "../../artifacts/approval.teal"
+    `../../artifacts/DemoApp/approval.teal`
   );
-  const clearProgram = await getBasicProgramBytes("../../artifacts/clear.teal");
+  const clearProgram = await getBasicProgramBytes(
+    `../../artifacts/DemoApp/clear.teal`
+  );
 
   // global / local states
   const numGlobalInts = 1;
   const numGlobalByteSlices = 1;
   const numLocalInts = 1;
   const numLocalByteSlices = 1;
+
+  const txn = algosdk.makeApplicationCreateTxnFromObject({
+    from: fromAccount.addr,
+    suggestedParams,
+    approvalProgram,
+    clearProgram,
+    numGlobalInts,
+    numGlobalByteSlices,
+    numLocalInts,
+    numLocalByteSlices,
+  });
+
+  const signedTxn = txn.signTxn(fromAccount.sk);
+  return await submitToNetwork(signedTxn);
+};
+
+const deployOpUpApp = async (fromAccount) => {
+  const suggestedParams = await algodClient.getTransactionParams().do();
+
+  // programs
+  const approvalProgram = await getBasicProgramBytes(
+    `../../artifacts/OpUpApp/approval.teal`
+  );
+  const clearProgram = await getBasicProgramBytes(
+    `../../artifacts/OpUpApp/clear.teal`
+  );
+
+  // global / local states
+  const numGlobalInts = 0;
+  const numGlobalByteSlices = 0;
+  const numLocalInts = 0;
+  const numLocalByteSlices = 0;
 
   const txn = algosdk.makeApplicationCreateTxnFromObject({
     from: fromAccount.addr,
@@ -201,9 +235,12 @@ const optIntoAsset = async (fromAccount, assetId) => {
   return await submitToNetwork(signedTxn);
 };
 
-const getMethodByName = (methodName) => {
+const getMethodByName = (methodName, appName) => {
   // Read in the local contract.json file
-  const source = path.join(__dirname, "../../artifacts/contract.json");
+  const source = path.join(
+    __dirname,
+    `../../artifacts/${appName}/contract.json`
+  );
   const buff = fs.readFileSync(source);
 
   // Parse the json file into an object, pass it to create an ABIContract object
@@ -240,6 +277,7 @@ const makeATCCall = async (txns) => {
 
 module.exports = {
   deployDemoApp,
+  deployOpUpApp,
   fundAccount,
   readGlobalState,
   readLocalState,

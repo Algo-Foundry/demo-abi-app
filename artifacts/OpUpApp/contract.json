@@ -1,0 +1,33 @@
+{
+    "name": "OpUpApp",
+    "methods": [
+        {
+            "name": "ed25519verify_bare",
+            "args": [
+                {
+                    "type": "string",
+                    "name": "msg"
+                },
+                {
+                    "type": "byte[32]",
+                    "name": "pubkey"
+                },
+                {
+                    "type": "byte[64]",
+                    "name": "sig"
+                }
+            ],
+            "returns": {
+                "type": "bool"
+            }
+        },
+        {
+            "name": "noop",
+            "args": [],
+            "returns": {
+                "type": "void"
+            }
+        }
+    ],
+    "networks": {}
+}

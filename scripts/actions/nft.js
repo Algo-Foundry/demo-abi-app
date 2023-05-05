@@ -11,6 +11,7 @@ const algodClient = getAlgodClient();
 
 (async () => {
   const creator = algosdk.mnemonicToSecretKey(process.env.CREATOR_MNEMONIC);
+  const appName = "DemoApp";
 
   // get application
   const appID = Number(process.env.APP_ID);
@@ -29,7 +30,7 @@ const algodClient = getAlgodClient();
   // create NFT
   const txn1 = [
     {
-      method: getMethodByName("create_nft"),
+      method: getMethodByName("create_nft", appName),
       methodArgs: [
         "Beaker AFNFT", // asset name
         "ipfs://path/to/jsonmetadata", // asset url
@@ -50,7 +51,7 @@ const algodClient = getAlgodClient();
   // transfer NFT
   const txn2 = [
     {
-      method: getMethodByName("transfer_nft"),
+      method: getMethodByName("transfer_nft", appName),
       ...commonParams,
       appForeignAssets: [assetID],
     },
